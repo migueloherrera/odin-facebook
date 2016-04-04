@@ -1,0 +1,7 @@
+<% @possible_friends.each do |f| %>
+  <p>
+    <%= gravatar_for(f, size: 50) %>
+    <h2><%= f.firstname %></h2>
+    <%= link_to "Add friend", '#', class: "btn btn-primary" %>
+  </p>
+<% end %>
