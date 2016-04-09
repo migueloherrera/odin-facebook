@@ -1,49 +1,10 @@
 <%= gravatar_for(@user) %>
 <h1><%= current_user.firstname %></h1>
-
-<h3>Friends</h3>
-<% unless @friends.empty? %>
-  <% @friends.each do |f| %>
-    <p>
-      <%= f.firstname %>
-      <%= link_to "Unfriend", friendship_path(f), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %>
-    </p>
-  <% end %>
-<% else %>
-  <p>You have no friends yet!</p>
-<% end %>
-
-<h3>Pending requests</h3>
-
-<% unless @pendings.empty? %>
-  <% @pendings.each do |p| %>
-    <p>
-      <%= p.invited.firstname %>
-      <%= link_to "Cancel request", friendship_path(p.invited.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %>
-    </p>
-  <% end %>
-<% else %>
-  <p>You have no pending requests</p>
-<% end %>
-
-<h3>Pending invitations</h3>
-
-<% unless @notifications.empty? %>
-  <% @notifications.each do |n| %>
-    <p>
-      <%= n.invitation.firstname %>
-      <%= link_to "Accept friendship", friendship_path(n.invitation.id), method: :put, class: "btn btn-info" %>
-      <%= link_to "Decline friendship", friendship_path(n.invitation.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %> 
-    </p>
-  <% end %>
-<% end %>
-
-<h3>People you may know</h3>
-<% unless @not_friends.empty? %>
-  <% @not_friends.each do |nf| %>
-    <p>
-      <%= nf.firstname %>
-      <%= link_to "Add Friend", friendships_path(id: nf.id), method: :post, class: "btn btn-info" %>
-    </p>
-  <% end %>
-<% end %>
+ <div class="row">
+  <div class="col-sm-4">
+    <%= render 'social' %>
+  </div>
+  <div class="col-sm-8">
+    Space for posts
+  </div>
+</div>
