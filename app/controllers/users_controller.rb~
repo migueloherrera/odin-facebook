@@ -1,16 +1,19 @@
 class UsersController < ApplicationController
   
-  def index
-    @possible_friends = User.all.where.not(id: current_user.id)
-    # create a method to return only the users who are not friends yet
-  end
-  
   def show
     if user_signed_in?
       @user = current_user
-      #and posts
+      @friends = User.friends(current_user)
+      @pendings = @user.invited_friendships.where(accepted: false)
+      @notifications = @user.received_friendships.where(accepted: false)
+      
+      @not_friends = User.all_except(@friends).where.not(id: current_user.id)
+      @not_friends = @not_friends.map {|u| u if !Friendship.exists?(from_id: current_user.id, to_id: u.id)}
+      # gotta figure out yet how to hide from friends the invitations already made or received
+            
     else
       redirect_to new_user_session_path
     end
   end
+  
 end
