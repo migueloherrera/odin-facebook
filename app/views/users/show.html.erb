@@ -1,10 +1,22 @@
 <%= gravatar_for(@user) %>
-<h1><%= current_user.firstname %></h1>
+<h1><%= @user.firstname %></h1>
  <div class="row">
   <div class="col-sm-4">
-    <%= render 'social' %>
+    <h4><%= @user.lastname %></h4>
+    <h4><%= @user.email %></h4>
   </div>
   <div class="col-sm-8">
-    Space for posts
+
+    <% if current_user.id == @user.id %>
+    
+      <h3>Add a post:</h3>
+      <% @post = Post.new %>
+      <% @post.user = @user %>
+      <%= render 'posts/form' %>
+    <% end %>
+
+    <h3>Posts</h3>
+    <%= render @user.posts %>
+
   </div>
 </div>

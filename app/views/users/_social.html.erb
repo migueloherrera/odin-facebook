@@ -2,7 +2,7 @@
 <% unless @friends.empty? %>
   <% @friends.each do |f| %>
     <p>
-      <%= gravatar_for(f, size: 35) %>
+      <%= link_to gravatar_for(f, size: 35), user_path(id: f.id) %>
       <%= link_to "Unfriend", friendship_path(f), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %>
     </p>
   <% end %>
@@ -15,7 +15,7 @@
 <% unless @pendings.empty? %>
   <% @pendings.each do |p| %>
     <p>
-      <%= gravatar_for(p.invited, size: 35) %>
+      <%= link_to gravatar_for(p.invited, size: 35), user_path(id: p.invited.id) %>
       <%= link_to "Cancel request", friendship_path(p.invited.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %>
     </p>
   <% end %>
@@ -28,7 +28,7 @@
 <% unless @notifications.empty? %>
   <% @notifications.each do |n| %>
     <p>
-      <%= gravatar_for(n.invitation, size: 35) %>
+      <%= link_to gravatar_for(n.invitation, size: 35), user_path(id: n.invitation.id) %>
       <%= link_to "Accept friendship", friendship_path(n.invitation.id), method: :put, class: "btn btn-info" %>
       <%= link_to "Decline friendship", friendship_path(n.invitation.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" %> 
     </p>
@@ -39,7 +39,7 @@
 <% unless @not_friends.empty? %>
   <% @not_friends.each do |nf| %>
     <p>
-      <%= gravatar_for(nf, size: 35) %>
+      <%= link_to gravatar_for(nf, size: 35), user_path(id: nf.id) %>
       <%= link_to "Add Friend", friendships_path(id: nf.id), method: :post, class: "btn btn-info" %>
     </p>
   <% end %>

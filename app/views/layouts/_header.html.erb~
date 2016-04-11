@@ -8,7 +8,8 @@
         <% n = current_user.received_friendships.where(accepted: false).count %>
         <li><%= link_to "Friend requests: #{n}", '' %></li>
         <li><%= link_to "Settings", edit_user_registration_path  %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete  %></li>
+        <li><%= link_to current_user.firstname, '#' %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       </ul>
     <% else %>
       <ul class="nav navbar-nav navbar-right">

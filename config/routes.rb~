@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :posts
   devise_for :users
   
-  root 'users#show'
+  root 'users#index'
 
-  resources :friendships, only: [:create, :update, :delete]
+  resources :friendships, only: [:create, :update, :destroy]
 end

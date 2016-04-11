@@ -1,0 +1,10 @@
+<%= link_to gravatar_for(@user), @user %>
+<h1><%= current_user.firstname %></h1>
+ <div class="row">
+  <div class="col-sm-6">
+    <%= render 'social' %>
+  </div>
+  <div class="col-sm-6">
+    <%= render @user.posts %>
+  </div>
+</div>

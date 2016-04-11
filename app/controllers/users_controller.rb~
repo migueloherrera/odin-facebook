@@ -1,18 +1,23 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   
-  def show
+  def index
     if user_signed_in?
       @user = current_user
       @friends = User.friends(current_user)
       @pendings = @user.invited_friendships.where(accepted: false)
       @notifications = @user.received_friendships.where(accepted: false)
-      
-      @not_friends = User.all_except(@friends).where.not(id: current_user.id)
-      @not_friends = @not_friends.map {|u| u if !Friendship.exists?(from_id: current_user.id, to_id: u.id)}
-      # gotta figure out yet how to hide from friends the invitations already made or received
-            
+      @not_friends = User.not_friends(current_user)
     else
       redirect_to new_user_session_path
+    end
+  end
+  def show
+    if params[:id].nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+      @post = Post.new
     end
   end
   
