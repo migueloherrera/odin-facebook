@@ -1,0 +1,10 @@
+<%= form_for(@comment) do |f| %>
+  <div class="field">
+    <%= f.label :body, "Add your comment" %><br>
+    <%= f.text_area :body %>
+    <%= hidden_field_tag(:post_id, @comment.post.id) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Publish comment", class: "button"%>
+  </div>
+<% end %>

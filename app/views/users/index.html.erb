@@ -11,7 +11,7 @@
       <% @post.user = @user %>
       <%= render 'posts/form' %>
     <% end %>
-        
+    <hr>    
     <% @timeline.each do |t| %>
       <!-- <%= render partial: 'posts/post', collection: t, as: :post %>  -->
       <%= render t %>

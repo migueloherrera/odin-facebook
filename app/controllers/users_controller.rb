@@ -9,9 +9,10 @@ class UsersController < ApplicationController
       @notifications = @user.received_friendships.where(accepted: false)
       @not_friends = User.not_friends(current_user)
       
-      @timeline = [@user.posts.limit(5).order(created_at: :desc)]
+      @timeline = []
       @friends.each {|f| @timeline << f.posts.limit(5).order(created_at: :desc) if f.posts.any?}
-      @timeline.shuffle!
+      @timeline << @user.posts.limit(5).order(created_at: :desc)
+      #@timeline.shuffle!
     else
       redirect_to new_user_session_path
     end

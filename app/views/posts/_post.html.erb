@@ -1,6 +1,13 @@
 <strong><%= post.content %></strong>
 <p><%= time_ago_in_words(post.created_at) %> Ago by <%= post.user.firstname %></p>
 
+<hr>
+<%= post.comments.count %> Comments
+<%= render post.comments %>
+
+<% @comment = Comment.new(post_id: post.id, user_id: current_user.id) %>
+<%= render 'comments/form' %>
+
 <% if post.likes.where(user_id: current_user.id).empty? %>
   <%= link_to "Like", likes_path(id: post), method: :post, class: "button" %>
   (<%= post.likes.count %>)
@@ -11,7 +18,7 @@
 
 <% if current_user.id == post.user.id %>
   <p>
-    <%= link_to 'Delete', post, method: :delete, class: "button", data: {confirm: 'Are you sure?'} %>
+    <%= link_to 'Delete post', post, method: :delete, class: "button", data: {confirm: 'Are you sure?'} %>
   </p>
 <% end %>
 <hr>
