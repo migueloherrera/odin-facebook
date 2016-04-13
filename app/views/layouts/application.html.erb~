@@ -9,13 +9,8 @@
 <body>
 
 <%= render '/layouts/header' %>
- <div class="row">
-  <div class="col-sm-3">Aqui va la foto</div>
-  <div class="col-sm-6">
-    <%= yield %>
-  </div>
-  <div class="col-sm-3">Aqui van los amigos o algo asi</div>
+<div class="container">
+  <%= yield %>
 </div>
-
 </body>
 </html>

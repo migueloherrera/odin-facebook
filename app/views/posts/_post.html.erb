@@ -1,8 +1,17 @@
 <strong><%= post.content %></strong>
-<p><%= time_ago_in_words(post.created_at) %> Ago</p>
+<p><%= time_ago_in_words(post.created_at) %> Ago by <%= post.user.firstname %></p>
 
-<% if current_user.id == @user.id %>
+<% if post.likes.where(user_id: current_user.id).empty? %>
+  <%= link_to "Like", likes_path(id: post), method: :post, class: "button" %>
+  (<%= post.likes.count %>)
+<% else %>
+  <%= link_to "Unlike", like_path(id: post), method: :delete, class: "button" %>
+  (<%= post.likes.count %>)
+<% end %>
+
+<% if current_user.id == post.user.id %>
   <p>
     <%= link_to 'Delete', post, method: :delete, class: "button", data: {confirm: 'Are you sure?'} %>
   </p>
 <% end %>
+<hr>

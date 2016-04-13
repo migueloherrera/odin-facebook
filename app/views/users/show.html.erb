@@ -7,14 +7,6 @@
   </div>
   <div class="col-sm-8">
 
-    <% if current_user.id == @user.id %>
-    
-      <h3>Add a post:</h3>
-      <% @post = Post.new %>
-      <% @post.user = @user %>
-      <%= render 'posts/form' %>
-    <% end %>
-
     <h3>Posts</h3>
     <%= render @user.posts %>
 

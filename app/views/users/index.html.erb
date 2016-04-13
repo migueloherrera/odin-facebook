@@ -1,10 +1,21 @@
 <%= link_to gravatar_for(@user), @user %>
 <h1><%= current_user.firstname %></h1>
  <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <%= render 'social' %>
   </div>
-  <div class="col-sm-6">
-    <%= render @user.posts %>
+  <div class="col-sm-8">
+    <% if current_user.id == @user.id %>
+      <h3>Add a post:</h3>
+      <% @post = Post.new %>
+      <% @post.user = @user %>
+      <%= render 'posts/form' %>
+    <% end %>
+        
+    <% @timeline.each do |t| %>
+      <!-- <%= render partial: 'posts/post', collection: t, as: :post %>  -->
+      <%= render t %>
+    <% end %>
+    
   </div>
 </div>

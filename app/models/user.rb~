@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :received_friendships, class_name: "Friendship", foreign_key: :to_id
   has_many :inviteds, through: :received_friendships, source: :invited
   
+  has_many :posts, dependent: :destroy
+  
   scope :all_except, ->(users) { where.not(id: users) }
 
   def self.friends(user)

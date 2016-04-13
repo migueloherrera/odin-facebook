@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   
   has_many :posts, dependent: :destroy
   
+  has_many :likes, dependent: :destroy
+  
   scope :all_except, ->(users) { where.not(id: users) }
 
   def self.friends(user)
