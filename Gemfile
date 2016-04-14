@@ -9,6 +9,8 @@ gem 'pg'
 ############## ADDED GEMS ################
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'omniauth-facebook'
+gem 'figaro'
 ##########################################
 
 gem 'sass-rails', '~> 5.0'
