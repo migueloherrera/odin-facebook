@@ -11,6 +11,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'letter_opener', group: :development
 ##########################################
 
 gem 'sass-rails', '~> 5.0'
